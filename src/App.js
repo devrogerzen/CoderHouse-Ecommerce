@@ -1,13 +1,16 @@
-import { Container } from "./components/Container";
-import {  ItemListContainer } from "./components/ItemListContainer";
+import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/navbar/Navbar";
+import { About, Contact, Home } from "./pages";
 
 function App() {
   return (
     <>
-    <Navbar />
-    <Container text1="Welcome" text2="E-Commerce To CoderHouse" />
-    <ItemListContainer />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/Contact" element={<Contact />} />
+      </Routes>
     </>
   );
 }
