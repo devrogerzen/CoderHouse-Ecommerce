@@ -1,52 +1,44 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import { useState, useEffect } from "react";
-import { css } from "@emotion/css";
+import { useFetch } from "../hooks/useFecth";
 import { Link } from "react-router-dom";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Button, CardActionArea, CardActions } from "@mui/material";
+import { css } from "@emotion/css";
 
 export function ItemListContainer() {
-  const [data, setData] = useState();
-  //const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((Response) => Response.json())
-      .then((data) => setData(data));
-  }, []);
+  const { data, loading } = useFetch(
+    "https://jsonplaceholder.typicode.com/posts"
+  );
 
   return (
     <div
       className={css`
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       `}
     >
+      {loading && <li>is Loading....</li>}
       {data?.map((pers) => {
         return (
-          <Card key={pers.id} sx={{ maxWidth: 300, margin: 5 }}>
+          <Card key={pers.id} sx={{ maxWidth: 200, margin: 2 }}>
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="150"
-                image={`../images/${data.id}.png`}
+                height="100"
+                image={`/images/${pers.id}.png`}
                 alt={pers.id}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {pers.title.slice(0, 10)}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body3" color="text.secondary">
                   {pers.body.slice(0, 90)}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Button size="small" color="primary">
-                <Link style={{ textDecoration: "none" }} to="/details">
-                  {" "}
+                <Link style={{ textDecoration: "none" }} to={`/detail/${pers.id}`}>
                   Details ...
                 </Link>
               </Button>

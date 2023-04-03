@@ -1,4 +1,4 @@
-import ImgImports from "../images/importados.jpg";
+import ImgImports from "./images/importados.jpg";
 import "./BodyIntro.css";
 
 export const BodyIntro = () => {
