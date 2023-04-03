@@ -1,8 +1,9 @@
 import { useFetch } from "../hooks/useFecth";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Button, CardActionArea, CardActions, Box } from "@mui/material";
 import { css } from "@emotion/css";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export function ItemListContainer() {
   const { data, loading } = useFetch(
@@ -16,7 +17,7 @@ export function ItemListContainer() {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       `}
     >
-      {loading && <li>is Loading....</li>}
+      {loading && <Box sx={{ display: 'flex', width: '100%' , justifyContent:'center' }}> <CircularProgress /> </Box>}
       {data?.map((pers) => {
         return (
           <Card key={pers.id} sx={{ maxWidth: 200, margin: 2 }}>

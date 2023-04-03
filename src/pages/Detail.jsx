@@ -16,7 +16,7 @@ export const Detail = () => {
   return (
 
     <div key={user.id}>
-      <img src={`../components/images/${user.id}`} alt={user.title} />
+      <img src={`/images/${user.id}.png`} alt={user.title} />
       <h1>{user.title}</h1>
       <h3>{user.body}</h3>
     </div>

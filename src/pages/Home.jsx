@@ -1,4 +1,4 @@
-import { BodyIntro } from "../components/BodyIntro";
+import { BodyIntro } from "../components/bodyintro/BodyIntro";
 import { ItemListContainer } from "../components/ItemListContainer";
 
 export const Home = () => {
